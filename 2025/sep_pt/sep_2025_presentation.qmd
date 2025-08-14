@@ -1,0 +1,122 @@
+---
+title: "Gulf of Alaska Pacific Ocean Perch"
+subtitle: "September 2025 - Groundfish Plan Team" 
+author: "Ben Williams"
+format:
+  pptx
+---
+
+## Pacific ocean perch
+
+ - New lead author
+ - Framework change
+ - Minor model corrections
+ - Input data changes
+
+## Framework change
+
+- Bridge model to RTMB
+  + Results equivalent to ADMB model
+- Base model ([model 2020.1](https://github.com/pete-hulson/goa_pop/tree/main/2025/base)) using 2023 data inputs. 
+
+The RTMB assessment model and the associated comparison code are available on GitHub. 
+
+ - [RTMB Model Code:](https://github.com/pete-hulson/goa_pop/blob/main/2025/R/models.R) 
+ - [ADMB vs. RTMB Comparison Code:](https://github.com/pete-hulson/goa_pop/blob/main/2025/R/rtmb_bridge.R).
+
+
+## Framework change
+
+Same parameter inputs as the ADMB model, though left unbounded in the RTMB implementation.
+
+### Key outputs 
+
+ - Total biomass, spawning biomass, etc. are equivalent
+ - nLL values are near identical, differing by a few decimal points
+ 
+## Framework change - parameters
+
+```{r, echo=F}
+library(dplyr)
+like_tbl = vroom::vroom(here::here(2025, "sep_pt", "tables", "like_tbl.csv"))
+par_tbl = vroom::vroom(here::here(2025, "sep_pt", "tables", "par_tbl.csv"))
+
+par_tbl %>% 
+  flextable::flextable() %>% 
+  flextable::autofit() %>%
+  flextable::width(j = 1, width = 1.5)  %>% 
+  flextable::colformat_double(
+    i = c(5:7,9),  j = 2:3,
+    big.mark = ",", 
+    digits = 2, 
+    na_str = "N/A"
+  )
+```
+
+## Framework change - nLL
+
+```{r, echo=F}
+like_tbl %>% 
+  flextable::flextable() %>% 
+  flextable::autofit() %>%
+  flextable::width(j = 1, width = 1.5)  
+```
+
+
+## Model corrections - Survey negative log likelihood
+Historically used a simplified nLL for survey biomass:
+
+$$
+\text{nll} = \lambda \sum_y 
+\frac{
+\left( \log(I_y) - \log(\hat{I}_y) \right)^2
+}{
+2 \left( \frac{SE(I_y)}{I_y} \right)^2
+}
+$$
+
+This form does not account for the non-zero mean bias inherent in a lognormal distribution. 
+Updated to the full form of the lognormal nLL, that incorporates a bias correction:
+
+$$
+\text{nll} = \lambda \sum_{y} \left[
+\log(\sigma_y) + \frac{1}{2} \left( \frac{
+\log\left( \frac{I_y}{\hat{I}_y^{bc}} \right)
+}{\sigma_y} \right)^2
+\right]
+$$
+
+\noindent where
+Here, $\sigma_y$ is the standard deviation on the log scale, and $\hat{I}_y^{bc}$ is the bias-corrected model prediction. 
+These terms are defined as:
+
+$$
+\sigma_y = \sqrt{ \log \left( 1 + \frac{SE(I_y)^2}{I_y^2} \right) }
+\quad \text{and} \quad \hat{I}_y^{bc} = \hat{I}_y \times \exp\left( \frac{\sigma_y^2}{2} \right)
+$$
+
+
+## Model/Data examinations:
+
+ - Survey biomass likelihood
+ - Fishery selectivity 2nd time block adjustment
+ - GAP GOA re-stratification
+   + 
+ 
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+

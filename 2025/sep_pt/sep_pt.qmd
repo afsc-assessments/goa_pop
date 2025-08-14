@@ -1,0 +1,421 @@
+---
+title: "Gulf of Alaska Pacific Ocean Perch - September 2025 Groundfish Plan Team"
+author: "Benjamin C. Williams"
+format:
+  pdf:
+    toc: true
+    toc-location: left
+    number-sections: true
+    include-in-header:
+      - text: |
+          \usepackage{placeins}
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+library(dplyr)
+like_tbl = vroom::vroom(here::here(2025, "sep_pt", "tables", "like_tbl.csv"))
+par_tbl = vroom::vroom(here::here(2025, "sep_pt", "tables", "par_tbl.csv"))
+app = vroom::vroom(here::here(2025, "sep_pt", "tables", "app.csv"))
+
+like_tbl_slx = vroom::vroom(here::here(2025, "sep_pt", "tables", "like_tbl_slx.csv"))
+par_tbl_slx = vroom::vroom(here::here(2025, "sep_pt", "tables", "par_tbl_slx.csv"))
+
+gap_like_tbl = vroom::vroom(here::here(2025, "sep_pt", "tables", "gap_like_tbl.csv"))
+gap_par_tbl = vroom::vroom(here::here(2025, "sep_pt", "tables", "gap_par_tbl.csv"))
+```
+
+## Introduction 
+
+The 2025 Pacific Ocean Perch assessment has changed lead author, leading to only a few incremental changes and data examinations. 
+The most significant update is the migration of the assessment model from the ADMB framework to RTMB. 
+Additionally, three model changes are put forward: using the full form of the lognormal negative log-likelihood for survey biomass, estimating the second fishery selectivity time block with a double logistic model, and implementing Francis reweighting. 
+Last, is a data exploration on how survey restratification efforts impact this assessment and area allocations.
+All examinations originate from the ADMB base model ([model 2020.1](https://github.com/afsc-assessments/goa_pop/tree/main/2025/base)) using 2023 data inputs. 
+
+### General description:
+
+ - Tier 3a
+ - Not overfished/overfishing
+ - Operational Full Assessment for 2025
+ 
+
+
+## Model Bridging
+### ADMB to RTMB - Model 25
+The RTMB assessment model and the associated comparison code are available on GitHub. 
+
+ - [RTMB Model Code:](https://github.com/pete-hulson/afsc-assessments/blob/main/2025/R/models.R) 
+ - [ADMB vs. RTMB Comparison Code:](https://github.com/afsc-assessments/afsc-assessments/blob/main/2025/rtmb_bridge/rtmb_bridge.R).
+
+The RTMB model was optimized using the same parameter inputs as the ADMB model, though these inputs were unbounded in the RTMB implementation.
+
+Key outputs (e.g., total biomass, spawning biomass) are equivalent, as shown in @tbl-par. 
+The negative log-likelihood values are also nearly identical, differing by a few decimal points (@tbl-like).
+
+\pagebreak
+
+```{r}
+#| label: tbl-par
+#| tbl-cap: "Key parameters and output values for comparing the GOA Pacific ocean perch assessment coded in ADMB and RTMB."
+par_tbl %>% 
+  flextable::flextable() %>% 
+  flextable::autofit() %>%
+  flextable::width(j = 1, width = 1.5)  %>% 
+  flextable::colformat_double(
+    i = c(5:7,9),  j = 2:3,
+    big.mark = ",", 
+    digits = 2, 
+    na_str = "N/A"
+  )
+```
+
+A comparison shows that the new model's results are consistent with the previous version (@fig-bio, @fig-slx), with negligible differences arising from numerical precision.
+
+\pagebreak
+
+```{r}
+#| label: tbl-like
+#| tbl-cap: "Model negative log likelihood values for comparing the GOA Pacific ocean perch assessment coded in ADMB and RTMB."
+
+like_tbl %>% 
+  flextable::flextable() %>% 
+  flextable::autofit() %>%
+  flextable::width(j = 1, width = 1.5)  
+```
+
+```{r}
+#| out-height: "6.5in"
+#| label: fig-bio
+#| fig-pos: "!h"
+#| fig-cap: "Comparison of key model outputs from the ADMB and RTMB Pacific ocean perch assessment models."
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", "biomass.png"))
+```
+
+```{r}
+#| out-height: "6.5in"
+#| label: fig-slx
+#| fig-pos: "!h"
+#| fig-cap: "Comparison of fishery (4 time blocks) and survey selectivity from the ADMB and RTMB Pacific ocean perch assessment models."
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", "slx.png"))
+```
+
+\FloatBarrier
+
+## Model changes 
+### Survey likelihood w/bias correction (Model 25a)
+Historically, the GOA POP assessment has used a simplified negative log-likelihood for survey biomass, which is a least-squares approximation of the lognormal distribution:
+
+$$
+\text{nll} = \lambda \sum_y 
+\frac{
+\left( \log(I_y) - \log(\hat{I}_y) \right)^2
+}{
+2 \left( \frac{SE(I_y)}{I_y} \right)^2
+}
+$$
+
+This simplified form is computationally convenient but does not account for the non-zero mean bias inherent in a lognormal distribution. 
+As a result, the expected value of the model's prediction does not correctly align with the survey data on the original arithmetic scale.
+
+To address this, the likelihood function has been updated to the full form of the lognormal negative log-likelihood. 
+This approach incorporates a bias correction term to ensure the model's expectation is properly centered. 
+The updated likelihood is:
+
+$$
+\text{nll} = \lambda \sum_{y} \left[
+\log(\sigma_y) + \frac{1}{2} \left( \frac{
+\log\left( \frac{I_y}{\hat{I}_y^{bc}} \right)
+}{\sigma_y} \right)^2
+\right]
+$$
+
+\noindent where, $\sigma_y$ is the standard deviation on the log scale, and $\hat{I}_y^{bc}$ is the bias-corrected model prediction. 
+These terms are defined as:
+
+$$
+\sigma_y = \sqrt{ \log \left( 1 + CV_y^2 \right) }
+\quad \text{and} \quad
+\hat{I}_y^{bc} =   \exp\left( -\frac{\sigma_y^2}{2} \right) \hat{I}_y
+$$
+
+Since the likelihood has changed, the total nLL of m25 and m25a are not directly comparable (@tbl-likeslx). 
+However, best practices lean toward using the full nLL form.
+Overall, the change in likelihood form slightly increases total and spawning biomass, and the OFL and ABC (@tbl-parslx).
+There are no meaningful differences in key paramaters (e.g., *M*, *q*).
+
+
+### Fishery selectivity (Model 25b)
+
+In the GOA POP assessment, fishery selectivity is modeled using four distinct time blocks.
+The selectivity blocks and their respective modeling approaches are defined as:
+
+ - Block 1 ($\le$ 1976): Estimated using a logistic selectivity curve.
+ - Block 2 (1977–1995): Calculated as the average of the curves from Block 1 and Block 3. Note there was a scaling error found in the implementation of this block where the max was not 1.
+ - Block 3 (1996–2006): Estimated using a double logistic selectivity curve.
+ - Block 4 (> 2006): Estimated using a double logistic selectivity curve.
+
+By averaging two curves, Block 2 is imposing a shape that may not accurately reflect the true selectivity during that period. 
+This could lead to bias in the estimated fishing mortality at age and, consequently, the stock status.
+The updated approach for Block 2 is to model it using a [double logistic selectivity curve](https://github.com/BenWilliams-NOAA/RTMButils/blob/d86be49c31d975082773d34a86f18b741101c0b7/R/selectivity.R#L31), similar to Blocks 3 and 4. 
+This change ensures that the selectivity curve is properly scaled, with a maximum value of 1, which corrects the previous error.
+Selectivity for the different model outputs are available in (@fig-fishslx), the likelihoods and parameters (are available in @tbl-likeslx and @tbl-parslx).
+One longstanding issue for this assessment has been a high *q* value, it is worth noting that when the selectivity is estimated *q* drops to 1.6, however, *M* remains consistent and somewhat elevated for such a long-lived species. 
+When any of the models are reweighted bot *q* and *M* drop with an associated increase in total and spawning biomass as well as OFL and ABC. 
+
+Note that the Francis reweighted models all tend toward weights of ~2.8 for fishery age composition data, ~2.0 for survey age composition data, and ~0.5 for fishery size composition data.
+Survey selectivity is also presented (@fig-srvslx), as it changes (shifts to slightly younger ages) for all of the reweighted models. 
+
+\pagebreak
+
+```{r}
+#| label: fig-fishslx
+#| out-height: "4.5in"
+#| fig-pos: "!h"
+#| fig-cap: "Fishery selectivity time blocks for models 25-25b. Models 25 and 25a, have the 2nd time block set at the average of the 1st and 3rd time blocks, m25b estimates selectivity using a double logistic model."
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", "fish_slx_block.png"))
+```
+
+\pagebreak
+```{r}
+#| label: fig-srvslx
+#| out-height: "4.5in"
+#| fig-pos: "!h"
+#| fig-cap: "Survey selectivity using a double logistic model for m25b. Note that the reweighted model runs (-rwt) all have selectivity shifted to a younger age."
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", "srv_slx.png"))
+```
+\pagebreak
+
+```{r}
+#| label: tbl-likeslx
+#| tbl-cap: "Model negative log-likelihood values for comparing multiple GOA Pacific ocean perch assessments with data or model changes. Model changes are incremental: m25 is the base model, m25a updates the survey likelihood, m25b estimates the 2nd fishery selectivity time blocks using a double logistc model. The '-rwt' indicates results after accounting for Francis reweighting." 
+
+like_tbl_slx %>% 
+  flextable::flextable() %>% 
+     flextable::colformat_double(
+    j = 2:5,
+    big.mark = ",", 
+    digits = 4, 
+    na_str = "N/A"
+  ) 
+```
+
+\pagebreak
+```{r}
+#| label: tbl-parslx
+#| tbl-cap: "Key parameters and output values for comparing multiple GOA Pacific ocean perch assessments with data or model changes. Model changes are incremental: m25 is the base model, m25a updates the survey likelihood, m25b estimates the 2nd fishery selectivity time blocks using a double logistc model. The '-rwt' indicates results after accounting for Francis reweighting." 
+par_tbl_slx %>% 
+  flextable::flextable() %>% 
+  # flextable::autofit() %>%
+  flextable::fit_to_width(max_width = 6.5) %>% 
+  flextable::width(j = 1, width = 1.3)  %>% 
+   flextable::colformat_double(
+    j = -1,
+    big.mark = ",", 
+    digits = 4, 
+    na_str = "N/A"
+  ) %>% 
+  flextable::colformat_double(
+    i = c(16:18,20),  j = -1,
+    big.mark = ",", 
+    digits = 0, 
+    na_str = "N/A"
+  )
+```
+
+## Data explorations 
+### GOA re-stratification (Model 25c)
+#### Impacts of GAP re-stratification on POP assessment 
+The AFSC RACE Groundfish Assessment Program (GAP) has been revamping their [data products](https://github.com/afsc-gap-products) over the last few years for improved reproducibility and consistency. 
+Some of this has resulted in [changes to the data products](https://docs.google.com/document/d/1ie0it6G_V_PrpO1fYe-731Fvubuahn2yi0ixBIpaYO8/edit?tab=t.0#heading=h.ivnn60c8oa1h). 
+For instance, there are known mismatches in size and age compositions between the (soon to be) archived data and the `gap_products` data. 
+Historically, there were some hauls in the AI/GOA where a catch weight was recorded for a species without an associated count.
+The old biomass scripts for the AI-GOA would assume these `NA` catch values to be zero, which negatively biased abundance estimates calculated from these hauls. 
+The updated database is therefore expected to have slightly higher abundance estimates for years in which these hauls occurred, with subsequent changes to the age and length composition data.
+Optimally all data pulls will be transitioned to the new GAP defined database(s), do be in line with contemporary standards from hereon.
+
+One substantial change to the GAP-managed databases is a re-stratification of the GOA.
+Due to the area-specific design-based model expansions the biomass and numbers of POP vary by area, and the total abundance estimate changes (@fig-srvbio). 
+
+\pagebreak
+
+```{r}
+#| label: fig-srvbio
+#| fig-pos: "!h"
+#| fig-cap: "Comparison of groundfish trawl survey biomass estimates for GOA Pacific ocean perch based upon the original design-based estimates and the restratified design-based estimates"
+#| include: true
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", 'restrat.png'))
+```
+\pagebreak
+The overall negative log likelihood increases, which is predominately driven by an increase in the recruitment component (@tbl-gaplike).
+There are increases in biomass and a substantal increase in *q* (@tbl-gappars) when the re-stratified survey biomass estimate is included in the assessment. 
+
+```{r}
+#| label: tbl-gaplike
+#| tbl-cap: "Model negative log-likelihood values for comparing GOA Pacific ocean perch assessments m25b with GAP restratified survey biomass m25c. The '-rwt' indicates results after accounting for Francis reweighting." 
+
+gap_like_tbl %>% 
+  flextable::flextable() %>% 
+     flextable::colformat_double(
+    j = 2:5,
+    big.mark = ",", 
+    digits = 4, 
+    na_str = "N/A"
+  ) 
+```
+
+\pagebreak
+```{r}
+#| label: tbl-gappars
+#| tbl-cap: "Key parameters and output values for comparing GOA Pacific ocean perch assessments m25b with GAP restratified survey biomass m25c. The '-rwt' indicates results after accounting for Francis reweighting." 
+gap_par_tbl %>% 
+  flextable::flextable() %>% 
+  # flextable::autofit() %>%
+  flextable::fit_to_width(max_width = 6.5) %>% 
+  flextable::width(j = 1, width = 1.3)  %>% 
+   flextable::colformat_double(
+    j = -1,
+    big.mark = ",", 
+    digits = 4, 
+    na_str = "N/A"
+  ) %>% 
+  flextable::colformat_double(
+    i = c(16:18,20),  j = -1,
+    big.mark = ",", 
+    digits = 0, 
+    na_str = "N/A"
+  )
+```
+
+
+#### Impacts of GAP re-stratification on POP apportionment
+Area apportionment is completed by applying the [`REMA`](https://github.com/afsc-assessments/rema) model to estimate random effects parameters that control the variation of estimated biomass across years and areas, and is fit to the trawl survey biomass estimates (with associated variance) for the Western, Central, and Eastern GOA.
+Changes to the survey biomass stratification will affect this apportionment strategy.
+Historical abundance estimates were restratified through [code](https://github.com/pete-hulson/goa_restrat) provided by Pete Hulson.  
+
+Re-stratification increases the biomass estimates for all regions in most years (@fig-restratbio). 
+However, the proportions by area do not substantially change (@fig-propbio).
+
+
+```{r}
+#| label: fig-restratbio
+#| fig-pos: "!htbp"
+#| fig-cap: "Biomass estimates by GOA area from the original design-based estimates and re-stratified estimates."
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", "restrat_bio.png"))
+```
+
+```{r}
+#| label: fig-propbio
+#| fig-pos: "!htbp"
+#| fig-cap: "The proportion of biomass by GOA area from the original design-based estimates and re-stratified estimates."
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", "prop_bio.png"))
+```
+
+As such, the area apportionments do not change substantially (@fig-app and @tbl-app).
+
+```{r}
+#| label: fig-app
+#| fig-pos: "!htbp"
+#| fig-cap: "Annual apportionment based upon the original design-based estimates and re-stratified estimates as run through the REMA model."
+
+knitr::include_graphics(here::here(2025, "sep_pt", "figs", "app.png"))
+```
+\pagebreak
+```{r}
+#| label: tbl-app
+#| tbl-cap: "Annual regional apportionment with original survey stratification and restratified values. Note, this comparison is from the most recent REMA run e.g., without 'retrospective' peels."
+
+app %>% 
+  relocate(model_name, year, `Western GOA`, `Central GOA`,  `Eastern GOA`, abc) %>% 
+  rename(
+    Model = model_name,
+    Year = year,
+    ABC = abc
+  ) %>% 
+  flextable::flextable() %>% 
+  flextable::colformat_num(j = 2, big.mark = "", digits = 0) %>% 
+  flextable::colformat_double(j = 3:5, digits = 0) %>% 
+  flextable::merge_v(j=c(2,6)) %>% 
+  flextable::theme_zebra(odd_header = "white", even_body = "gray90", odd_body = "white") %>%
+  flextable::bg(j = c(2, 6), bg = "white", part = "body") %>% 
+  flextable::autofit() %>% 
+  flextable::hline_top() %>% 
+  flextable::hline_bottom() %>% 
+  flextable::hline(i = seq(2,20,2)) %>% 
+  flextable::autofit()
+```
+
+
+
+
+
+
+<!-- ## Research Models -->
+
+<!-- ### Have data conflicts...   -->
+<!-- *Conflict with Age Data:*   -->
+
+<!--  -  The most dramatic shifts occur in parameters related to selectivity and growth. -->
+
+<!-- *Impact on Mortality and Biomass:*   -->
+
+<!--  - Changes in selectivity have a domino effect.  -->
+<!--  - Estimate for natural mortality, *M*, drop significantly, and as a result, the total and spawning biomass estimates roughly double.    -->
+
+<!--  *Influence on Management Advice:*   -->
+
+<!--  -  Ultimately, this data conflict leads to a vastly different perception of the stock's productivity and status, as reflected in the OFL and ABC calculations -->
+
+<!-- ## Examinations  -->
+<!-- ### Survey Selectivity  -->
+<!-- Random walk penalty on survey selectivity parameter $\log(a_{50, S, t})$ over time, penalized as: -->
+
+<!-- $$ -->
+<!-- \text{nll}_{slx\_srv} = \sum_{t=2}^{T_S} \frac{\left( \log a_{50, S, t} - \log a_{50, S, t-1} \right)^2}{2\sigma_{\text{slx}, S}^2} -->
+<!-- $$ -->
+
+<!-- where:   -->
+
+<!-- - $a_{50, S, t}$ is the age at 50% selectivity for the survey in year $t$,  -->
+<!-- - $\sigma_{\text{slx}, S}$ is the standard deviation controlling the smoothness of the random walk. -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-tvsrvslx -->
+<!-- #| fig-pos: "!htbp" -->
+<!-- #| fig-cap: "Annual survey selectivity with time varying A50." -->
+
+<!-- knitr::include_graphics(here::here(2025, "sep_pt", "figs", "srv_slx.png")) -->
+<!-- ``` -->
+
+<!-- ### Fishery selectivity  -->
+
+<!--  - Double normal time blocks (last 2) - no improvement -->
+<!--  - Logistic time blocks (last 2) - similar overall likelihood, slight reduction in biomass -->
+<!--  - Random walk on a50 - slightly increased overall likelihood - increases biomass, *q* = 2.57 -->
+<!--  - Random walk on a50 w/time-varying *q* lower overall likelihood - mostly due to recruitment, major recruit shift (doubles+) and associated almost double biomass - very high *M* (0.14) - *held $sigma_q$ and $sigma_rw$ fixed* -->
+
+
+<!-- ### Cohort smoothing -->
+
+<!--  - worse overall likelihood, slight increase in biomass -->
+
+<!-- ### M prior -->
+<!-- Free up cv *M* from 0.1 to 0.31 -->
+
+<!--  - best overall likelihood, *M* increases to 0.986, biomass increases -->
+ 
+
+
+
+
+

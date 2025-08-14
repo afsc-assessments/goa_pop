@@ -1,0 +1,13 @@
+Likelihood,ADMB,RTMB,Difference
+Catch,0.2181,0.2181,0
+Survey,16.4416,16.4416,0
+Fish age,25.0028,25.0028,0
+Survey age,29.2822,29.2822,0
+Fish size,66.2258,66.2259,9.99999999891088e-5
+Recruitment,10.6027,10.6027,0
+F regularity,6.1405,6.1405,0
+SPR penalty,0,0,0
+M prior,1.8299,1.8299,0
+q prior,0.4241,0.4241,0
+Sigma R prior,7.9849,7.9849,0
+Sub total,164.1526,164.1527,1.0000000000331966e-4

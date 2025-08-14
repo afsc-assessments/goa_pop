@@ -1,0 +1,132 @@
+---
+title: "equations"
+format:
+  docx: default
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+Model Symbols and Definitions
+
+
+| Symbol                  | Definition                                     |
+|-------------------------|------------------------------------------------|
+| $y$                     | Year                                           |
+| $a$                     | Age class                                      |
+| $a_0$                   | Age at recruitment (age-2)                     |
+| $a_+$                   | Plus group age (age-31 and older)              |
+| $s$                     | Sex (male or female)                           |
+| $f$                     | Fleet (fixed (LL), trawl (TR))                 |
+| $\delta_s^{\text{log}}$ | Logistic slope for fixed-gear selectivity (sex $s$) |
+| $a_{50,s}$              | Age at 50% selectivity for fixed gear (sex $s$) |
+| $\delta_s^{\text{dome}}$| Dome width parameter for trawl selectivity (sex $s$) |
+| $a_{\max,s}$            | Age at peak selectivity for trawl gear (sex $s$) |
+| $p$                     | Gamma spread parameter for dome-shaped trawl selectivity |
+| $R_y$                   | Annual recruitment at age-2                    |
+| $N_{y,a,s}$             | Numbers-at-age in year $y$, age $a$, sex $s$  |
+| $Z_{y,a,s}$             | Total instantaneous mortality                  |
+| $F_{y,a,s,f}$           | Fleet-specific fishing mortality               |
+| $F_{y,a,s}$             | Total fishing mortality across fleets          |
+| $M_{y,a,s}$             | Natural mortality                              |
+| $v_{y,a,s,f}$           | Selectivity-at-age by fleet                     |
+| $r_{y,a,s,f}$           | Retention-at-age by fleet                       |
+| $d_{y,a,s,f}$           | Discard mortality rate                          |
+| $w_{y,a,s}$             | Weight-at-age                                  |
+| $m_{y,a,s}$             | Maturity-at-age                                |
+| $C_{y,a,f}$             | Catch-at-age by fleet                          |
+| $C_y$                   | Total catch in year $y$                        |
+| $B_y$                   | Total biomass in year $y$                      |
+| $SSB_y$                 | Female spawning stock biomass in year $y$     |
+| $q_{LL}, q_{TR}$        | Survey catchability coefficients               |
+| $I_{y,LL}, I_{y,TR}$    | Survey indices (longline, trawl)               |
+| $\sigma_{LL}, \sigma_{TR}$ | Survey index standard deviations             |
+| $\epsilon_y$            | Survey observation error                       |
+| $n^*$                   | Sample size for compositions                   |
+| $P_{a,s}$               | Composition Number of individuals sampled at age $a$ |
+
+                                     
+
+
+
+
+
+Population dynamics
+$$
+N_{y,a,s} =
+\begin{cases}
+R_y/2, & a = a_0 \\
+N_{y-1,a-1,s} e^{-Z_{y-1,a-1,s}}, & a_0 < a < a_+ \\
+N_{y-1,a-1,s} e^{-Z_{y-1,a-1,s}} + N_{y-1,a_+,s} e^{-Z_{y-1,a_+,s}}, & a = a_+
+\end{cases}
+$$
+
+$$
+Z_{y,a,s} = F_{y,a,s} + M_{y,a,s}
+$$
+
+$$
+F_{y,a,s} = \sum_f F_{y,a,s,f}
+$$
+
+$$
+F_{y,a,s,f} = v_{y,a,s,f} \cdot \left[F_{y,f} \cdot r_{y,a,s,f} + d_{y,a,s,f} \cdot (1 - r_{y,a,s,f}) \right]
+$$
+
+Selectivity Functions  
+Fixed Gear (Logistic)
+$$
+v_{y,a,s,\text{LL}} = \frac{1}{1 + \exp\left( -\delta_s^{\text{log}} (a - a_{50,s}) \right)}
+$$
+
+Trawl Gear (Dome-shaped Gamma)
+$$
+v_{y,a,s,\text{TR}} = \left(\frac{a}{a_{+,s}}\right)^{a_{+,s}/p} \cdot \exp\left( \frac{a_{+,s} - a}{p} \right)
+\quad\text{with } p = 0.5 \sqrt{a_{+,s}^2 + 4\left(\delta_s^{\text{dome}}\right)^2} - a_{+,s}
+$$
+
+
+Equations describing observation data
+
+$$
+C_{y,a,f} = \sum_{s=1}^2 \frac{F_{y,a,s,f}}{F_{y,a,s,f} + M_{y,a,s}} N_{y,a,s} \left( 1 - e^{-Z_{y,a,s}} \right) w_{y,a,s} 
+$$
+
+Annual Catch 
+$$
+C_y = \sum_a \sum_f C_{y,a,f}
+$$
+
+Annual total biomass  
+$$
+B_y = \sum_a \sum_s N_{y,a,s} w_{y,a,s}
+$$
+
+Annual spawning stock biomass (SSB)  
+$$
+SSB_y = \sum_a N_{y,a,\text{female}} \cdot w_{y,a,\text{female}} \cdot m_{y,a,\text{female}}
+$$
+
+Longline Survey (Abundance Index)   
+$$
+I_{y,LL} = q_{LL} \left[ \sum_a \sum_s N_{y,a,s} \cdot e^{-Z_{y,a,s}/2} \cdot v_{y,a,s,LL} \right] \cdot e^{\epsilon_y - \sigma_{LL}^2 / 2}
+$$
+
+Bottom Trawl Survey (Biomass Index)  
+$$
+I_{y,TR} = q_{TR} \left[ \sum_a \sum_s N_{y,a,s} \cdot e^{-Z_{y,a,s}/2} \cdot v_{y,a,s,BT} \cdot w_{y,a,s} \right] \cdot e^{\epsilon_y - \sigma_{TR}^2 / 2}
+$$
+
+Age Composition Data  
+Multinomial Sampling  
+
+$$
+P_{a,s} \sim \text{Multinomial} \left( \frac{N_{a,s}}{\sum_{a,s} N_{a,s}}, n^* \right)
+$$
+
+Sample sizes:
+
+ - Longline survey and fixed gear fleet: $n^* = 50$
+ - Trawl survey and trawl fleet: $n^* = 30$
+

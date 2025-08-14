@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benjamin C. Williams">
+
+<title>Gulf of Alaska Pacific Ocean Perch - September 2025 Groundfish Plan Team</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="sep_pt_files/libs/clipboard/clipboard.min.js"></script>
+<script src="sep_pt_files/libs/quarto-html/quarto.js"></script>
+<script src="sep_pt_files/libs/quarto-html/popper.min.js"></script>
+<script src="sep_pt_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="sep_pt_files/libs/quarto-html/anchor.min.js"></script>
+<link href="sep_pt_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="sep_pt_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="sep_pt_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="sep_pt_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="sep_pt_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="sep_pt_files/libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="sep_pt_files/libs/tabwid-1.1.3/tabwid.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#model-changes" id="toc-model-changes" class="nav-link" data-scroll-target="#model-changes"><span class="header-section-number">2</span> Model Changes</a>
+  <ul class="collapse">
+  <li><a href="#bridging-the-assessment-from-admb-to-rtmb---model-25" id="toc-bridging-the-assessment-from-admb-to-rtmb---model-25" class="nav-link" data-scroll-target="#bridging-the-assessment-from-admb-to-rtmb---model-25"><span class="header-section-number">2.1</span> Bridging the Assessment from ADMB to RTMB - model 25</a></li>
+  <li><a href="#survey-likelihood-bias-correction-model-25.1" id="toc-survey-likelihood-bias-correction-model-25.1" class="nav-link" data-scroll-target="#survey-likelihood-bias-correction-model-25.1"><span class="header-section-number">2.2</span> Survey likelihood bias correction (Model 25.1)</a></li>
+  <li><a href="#fishery-selectivity-code-correction-model-25.2" id="toc-fishery-selectivity-code-correction-model-25.2" class="nav-link" data-scroll-target="#fishery-selectivity-code-correction-model-25.2"><span class="header-section-number">2.3</span> Fishery selectivity code correction (Model 25.2)</a></li>
+  <li><a href="#goa-re-stratification" id="toc-goa-re-stratification" class="nav-link" data-scroll-target="#goa-re-stratification"><span class="header-section-number">2.4</span> GOA re-stratification</a></li>
+  <li><a href="#management-comparison-tables" id="toc-management-comparison-tables" class="nav-link" data-scroll-target="#management-comparison-tables"><span class="header-section-number">2.5</span> Management comparison tables</a></li>
+  <li><a href="#have-data-conflicts" id="toc-have-data-conflicts" class="nav-link" data-scroll-target="#have-data-conflicts"><span class="header-section-number">2.6</span> Have data conflicts…</a></li>
+  </ul></li>
+  <li><a href="#examinations" id="toc-examinations" class="nav-link" data-scroll-target="#examinations"><span class="header-section-number">3</span> Examinations</a>
+  <ul class="collapse">
+  <li><a href="#survey-selectivity" id="toc-survey-selectivity" class="nav-link" data-scroll-target="#survey-selectivity"><span class="header-section-number">3.1</span> Survey Selectivity</a></li>
+  <li><a href="#fishery-selectivity" id="toc-fishery-selectivity" class="nav-link" data-scroll-target="#fishery-selectivity"><span class="header-section-number">3.2</span> Fishery selectivity</a></li>
+  <li><a href="#cohort-smoothing" id="toc-cohort-smoothing" class="nav-link" data-scroll-target="#cohort-smoothing"><span class="header-section-number">3.3</span> Cohort smoothing</a></li>
+  <li><a href="#m-prior" id="toc-m-prior" class="nav-link" data-scroll-target="#m-prior"><span class="header-section-number">3.4</span> M prior</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gulf of Alaska Pacific Ocean Perch - September 2025 Groundfish Plan Team</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benjamin C. Williams </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>With a change in lead author for the 2025 Pacific ocean perch assessment, only a few incremental model changes and data examinations are being put forth. The most significant update is the migration of the assessment model from the ADMB framework to RTMB. A comparison shows that the new model’s results are consistent with the previous version, with negligible differences arising from numerical precision.</p>
+<p>All analyses originate from the base model (<a href="https://github.com/pete-hulson/goa_pop/tree/main/2025/base">model 2020.1</a>) using 2023 data inputs.</p>
+</section>
+<section id="model-changes" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="model-changes"><span class="header-section-number">2</span> Model Changes</h2>
+<section id="bridging-the-assessment-from-admb-to-rtmb---model-25" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="bridging-the-assessment-from-admb-to-rtmb---model-25"><span class="header-section-number">2.1</span> Bridging the Assessment from ADMB to RTMB - model 25</h3>
+<p>The RTMB assessment model and the associated comparison code are available on GitHub.</p>
+<ul>
+<li><a href="https://github.com/pete-hulson/goa_pop/blob/main/2025/R/models.R">RTMB Model Code:</a></li>
+<li><a href="https://github.com/pete-hulson/goa_pop/blob/main/2025/rtmb_bridge/rtmb_bridge.R">ADMB vs.&nbsp;RTMB Comparison Code:</a>.</li>
+</ul>
+<p>The RTMB model was optimized using the same parameter inputs as the ADMB model, though these inputs were unbounded in the RTMB implementation.</p>
+<p>Key outputs (e.g., total biomass, spawning biomass) are equivalent, as shown in <a href="#tbl-par">Table&nbsp;1</a>. The negative log-likelihood values are also nearly identical, differing only by a few decimal points (<a href="#tbl-like">Table&nbsp;2</a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-par" class="anchored">
+
+<div class="tabwid"><style>.cl-c524dfe6{}.cl-c51c40e8{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c51f5198{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c51f5199{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c51f69b2{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69b3{width:1.22in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69bc{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69c6{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69c7{width:1.22in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69c8{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69c9{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69d0{width:1.22in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69d1{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69d2{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69da{width:1.22in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69db{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69e4{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69e5{width:1.22in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69e6{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69e7{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69ee{width:1.22in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69ef{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69f0{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69f8{width:1.22in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c51f69f9{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c524dfe6"><caption>Table&nbsp;1:  <p>Key parameters and output values for comparing the GOA Pacific ocean
+perch assessment coded in ADMB and RTMB.</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-c51f69b2"><p class="cl-c51f5198"><span class="cl-c51c40e8">Item</span></p></th><th class="cl-c51f69b3"><p class="cl-c51f5199"><span class="cl-c51c40e8">ADMB</span></p></th><th class="cl-c51f69b3"><p class="cl-c51f5199"><span class="cl-c51c40e8">RTMB</span></p></th><th class="cl-c51f69bc"><p class="cl-c51f5199"><span class="cl-c51c40e8">Difference</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c51f69c6"><p class="cl-c51f5198"><span class="cl-c51c40e8">M</span></p></td><td class="cl-c51f69c7"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0743</span></p></td><td class="cl-c51f69c7"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0743</span></p></td><td class="cl-c51f69c8"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69c6"><p class="cl-c51f5198"><span class="cl-c51c40e8">q</span></p></td><td class="cl-c51f69c7"><p class="cl-c51f5199"><span class="cl-c51c40e8">1.7361</span></p></td><td class="cl-c51f69c7"><p class="cl-c51f5199"><span class="cl-c51c40e8">1.7361</span></p></td><td class="cl-c51f69c8"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69c9"><p class="cl-c51f5198"><span class="cl-c51c40e8">Log mean recruitment</span></p></td><td class="cl-c51f69d0"><p class="cl-c51f5199"><span class="cl-c51c40e8">4.4492</span></p></td><td class="cl-c51f69d0"><p class="cl-c51f5199"><span class="cl-c51c40e8">4.4492</span></p></td><td class="cl-c51f69d1"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69c9"><p class="cl-c51f5198"><span class="cl-c51c40e8">Log mean F</span></p></td><td class="cl-c51f69d0"><p class="cl-c51f5199"><span class="cl-c51c40e8">-2.6131</span></p></td><td class="cl-c51f69d0"><p class="cl-c51f5199"><span class="cl-c51c40e8">-2.6131</span></p></td><td class="cl-c51f69d1"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69d2"><p class="cl-c51f5198"><span class="cl-c51c40e8">2024 Total biomass</span></p></td><td class="cl-c51f69da"><p class="cl-c51f5199"><span class="cl-c51c40e8">649,941.00</span></p></td><td class="cl-c51f69da"><p class="cl-c51f5199"><span class="cl-c51c40e8">649,941.11</span></p></td><td class="cl-c51f69db"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.1070</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69e4"><p class="cl-c51f5198"><span class="cl-c51c40e8">2024 Spawning biomass</span></p></td><td class="cl-c51f69e5"><p class="cl-c51f5199"><span class="cl-c51c40e8">227,991.00</span></p></td><td class="cl-c51f69e5"><p class="cl-c51f5199"><span class="cl-c51c40e8">227,991.19</span></p></td><td class="cl-c51f69e6"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.1945</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69d2"><p class="cl-c51f5198"><span class="cl-c51c40e8">2024 OFL</span></p></td><td class="cl-c51f69da"><p class="cl-c51f5199"><span class="cl-c51c40e8">47,466.30</span></p></td><td class="cl-c51f69da"><p class="cl-c51f5199"><span class="cl-c51c40e8">47,466.28</span></p></td><td class="cl-c51f69db"><p class="cl-c51f5199"><span class="cl-c51c40e8">-0.0154</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69e7"><p class="cl-c51f5198"><span class="cl-c51c40e8">2024 F OFL</span></p></td><td class="cl-c51f69ee"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.1192</span></p></td><td class="cl-c51f69ee"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.1192</span></p></td><td class="cl-c51f69ef"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69d2"><p class="cl-c51f5198"><span class="cl-c51c40e8">2024 ABC</span></p></td><td class="cl-c51f69da"><p class="cl-c51f5199"><span class="cl-c51c40e8">39,718.90</span></p></td><td class="cl-c51f69da"><p class="cl-c51f5199"><span class="cl-c51c40e8">39,718.89</span></p></td><td class="cl-c51f69db"><p class="cl-c51f5199"><span class="cl-c51c40e8">-0.0104</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c51f69f0"><p class="cl-c51f5198"><span class="cl-c51c40e8">2024 F ABC</span></p></td><td class="cl-c51f69f8"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0990</span></p></td><td class="cl-c51f69f8"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0990</span></p></td><td class="cl-c51f69f9"><p class="cl-c51f5199"><span class="cl-c51c40e8">0.0000</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<p>Overall, the RTMB model successfully replicates the ADMB model (<a href="#fig-bio">Figure&nbsp;1</a>, <a href="#fig-slx">Figure&nbsp;2</a>), differences can be attributed to how the two programs round numerical values.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-like" class="anchored">
+
+<div class="tabwid"><style>.cl-c560170a{}.cl-c555c228{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c55b1480{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c55b148a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c55b3938{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3942{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b394c{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b394d{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b394e{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b394f{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3956{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3957{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3960{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3961{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b396a{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3974{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3975{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3976{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b397e{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b397f{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3980{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3988{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3989{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b398a{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c55b3992{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c560170a"><caption>Table&nbsp;2:  <p>Model negative log likelihood values for comparing the GOA Pacific
+ocean perch assessment coded in ADMB and RTMB.</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-c55b3938"><p class="cl-c55b1480"><span class="cl-c555c228">Likelihood</span></p></th><th class="cl-c55b3942"><p class="cl-c55b148a"><span class="cl-c555c228">ADMB</span></p></th><th class="cl-c55b3942"><p class="cl-c55b148a"><span class="cl-c555c228">RTMB</span></p></th><th class="cl-c55b394c"><p class="cl-c55b148a"><span class="cl-c555c228">Difference</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c55b394d"><p class="cl-c55b1480"><span class="cl-c555c228">Catch</span></p></td><td class="cl-c55b394e"><p class="cl-c55b148a"><span class="cl-c555c228">0.2181</span></p></td><td class="cl-c55b394e"><p class="cl-c55b148a"><span class="cl-c555c228">0.2181</span></p></td><td class="cl-c55b394f"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3956"><p class="cl-c55b1480"><span class="cl-c555c228">Survey</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">16.4416</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">16.4416</span></p></td><td class="cl-c55b3960"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3961"><p class="cl-c55b1480"><span class="cl-c555c228">Fish age</span></p></td><td class="cl-c55b396a"><p class="cl-c55b148a"><span class="cl-c555c228">25.0028</span></p></td><td class="cl-c55b396a"><p class="cl-c55b148a"><span class="cl-c555c228">25.0028</span></p></td><td class="cl-c55b3974"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3956"><p class="cl-c55b1480"><span class="cl-c555c228">Survey age</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">29.2822</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">29.2822</span></p></td><td class="cl-c55b3960"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3975"><p class="cl-c55b1480"><span class="cl-c555c228">Fish size</span></p></td><td class="cl-c55b3976"><p class="cl-c55b148a"><span class="cl-c555c228">66.2258</span></p></td><td class="cl-c55b3976"><p class="cl-c55b148a"><span class="cl-c555c228">66.2259</span></p></td><td class="cl-c55b397e"><p class="cl-c55b148a"><span class="cl-c555c228">0.0001</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3975"><p class="cl-c55b1480"><span class="cl-c555c228">Recruitment</span></p></td><td class="cl-c55b3976"><p class="cl-c55b148a"><span class="cl-c555c228">10.6027</span></p></td><td class="cl-c55b3976"><p class="cl-c55b148a"><span class="cl-c555c228">10.6027</span></p></td><td class="cl-c55b397e"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3961"><p class="cl-c55b1480"><span class="cl-c555c228">F regularity</span></p></td><td class="cl-c55b396a"><p class="cl-c55b148a"><span class="cl-c555c228">6.1405</span></p></td><td class="cl-c55b396a"><p class="cl-c55b148a"><span class="cl-c555c228">6.1405</span></p></td><td class="cl-c55b3974"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3956"><p class="cl-c55b1480"><span class="cl-c555c228">SPR penalty</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td><td class="cl-c55b3960"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b397f"><p class="cl-c55b1480"><span class="cl-c555c228">M prior</span></p></td><td class="cl-c55b3980"><p class="cl-c55b148a"><span class="cl-c555c228">1.8299</span></p></td><td class="cl-c55b3980"><p class="cl-c55b148a"><span class="cl-c555c228">1.8299</span></p></td><td class="cl-c55b3988"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b397f"><p class="cl-c55b1480"><span class="cl-c555c228">q prior</span></p></td><td class="cl-c55b3980"><p class="cl-c55b148a"><span class="cl-c555c228">0.4241</span></p></td><td class="cl-c55b3980"><p class="cl-c55b148a"><span class="cl-c555c228">0.4241</span></p></td><td class="cl-c55b3988"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3956"><p class="cl-c55b1480"><span class="cl-c555c228">Sigma R prior</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">7.9849</span></p></td><td class="cl-c55b3957"><p class="cl-c55b148a"><span class="cl-c555c228">7.9849</span></p></td><td class="cl-c55b3960"><p class="cl-c55b148a"><span class="cl-c555c228">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c55b3989"><p class="cl-c55b1480"><span class="cl-c555c228">Sub total</span></p></td><td class="cl-c55b398a"><p class="cl-c55b148a"><span class="cl-c555c228">164.1526</span></p></td><td class="cl-c55b398a"><p class="cl-c55b148a"><span class="cl-c555c228">164.1527</span></p></td><td class="cl-c55b3992"><p class="cl-c55b148a"><span class="cl-c555c228">0.0001</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bio" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/biomass.png" style="height:6.5in" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Comparison of key model outputs from the ADMB and RTMB Pacific ocean perch assessment models.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slx" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/slx.png" style="height:6.5in" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Comparison of fishery (4 time blocks) and survey selectivity from the ADMB and RTMB Pacific ocean perch assessment models.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="survey-likelihood-bias-correction-model-25.1" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="survey-likelihood-bias-correction-model-25.1"><span class="header-section-number">2.2</span> Survey likelihood bias correction (Model 25.1)</h3>
+<p>Historically, the GOA POP assessment has used a simplified negative log-likelihood for survey biomass, which is a least-squares approximation of the lognormal distribution:</p>
+<p><span class="math display">\[\begin{equation}
+\text{nll} = \lambda \sum_y
+\frac{
+\left( \log(I_y) - \log(\hat{I}_y) \right)^2
+}{
+2 \left( \frac{SE(I_y)}{I_y} \right)^2
+}
+\end{equation}\]</span></p>
+<p>This simplified form is computationally convenient but does not account for the non-zero mean bias inherent in a lognormal distribution. As a result, the expected value of the model’s prediction does not correctly align with the survey data on the original arithmetic scale.</p>
+<p>To address this, the likelihood function has been updated to the full form of the lognormal negative log-likelihood. This approach incorporates a bias correction term to ensure the model’s expectation is properly centered. The updated likelihood is:</p>
+<p><span class="math display">\[\begin{equation}
+\text{nll} = \lambda \sum_{y} \left[
+\log(\sigma_y) + \frac{1}{2} \left( \frac{
+\log\left( \frac{I_y}{\hat{I}_y^{bc}} \right)
+}{\sigma_y} \right)^2
+\right]
+\end{equation}\]</span></p>
+<p>where Here, <span class="math inline">\(\sigma_y\)</span> is the standard deviation on the log scale, and _y^{bc} is the bias-corrected model prediction. These terms are defined as:</p>
+<p><span class="math display">\[\begin{equation}
+\sigma_y = \sqrt{ \log \left( 1 + \frac{SE(I_y)^2}{I_y^2} \right) }
+\quad \text{and} \quad
+\hat{I}_y^{bc} = \hat{I}_y \times \exp\left( \frac{\sigma_y^2}{2} \right)
+\end{equation}\]</span></p>
+</section>
+<section id="fishery-selectivity-code-correction-model-25.2" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="fishery-selectivity-code-correction-model-25.2"><span class="header-section-number">2.3</span> Fishery selectivity code correction (Model 25.2)</h3>
+<p>In the GOA POP assessment, fishery selectivity is modeled using four distinct time blocks. An error was identified in the previous ADMB code where the selectivity curve for the second time block was not scaled to a maximum value of one. The selectivity blocks and their respective modeling approaches are defined as:</p>
+<ul>
+<li>Block 1 (≤ 1976): Estimated using a logistic selectivity curve.</li>
+<li>Block 2 (1977–1995): Calculated as the average of the curves from Block 1 and Block 3. The scaling error was found in the implementation of this block.</li>
+<li>Block 3 (1996–2006): Estimated using a double logistic selectivity curve.</li>
+<li>Block 4 (&gt; 2006): Estimated using a double logistic selectivity curve.</li>
+</ul>
+<p>Failing to scale the Block 2 curve to one can lead to an underestimate of fishing mortality at age for that period. However, the impact of correcting this error is minimal, with negligible changes to model outputs (<a href="#fig-m252">Figure&nbsp;7</a>), likelihoods (<a href="#tbl-likeslx">Table&nbsp;4</a>), and parameters (<a href="#tbl-parslx">Table&nbsp;5</a>).</p>
+<p>This correction has been implemented in the current model and will be carried forward in all subsequent analyses.</p>
+</section>
+<section id="goa-re-stratification" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="goa-re-stratification"><span class="header-section-number">2.4</span> GOA re-stratification</h3>
+<section id="impacts-of-gap-re-stratification-on-pop-assessment-model-25.2a" class="level4" data-number="2.4.1">
+<h4 data-number="2.4.1" class="anchored" data-anchor-id="impacts-of-gap-re-stratification-on-pop-assessment-model-25.2a"><span class="header-section-number">2.4.1</span> Impacts of GAP re-stratification on POP assessment (Model 25.2a)</h4>
+<p>The AFSC RACE Groundfish Assessment Program (GAP) has been revamping their <a href="https://github.com/afsc-gap-products">data products</a> over the last few years for improved reproducibility and consistency. Some of this has resulted in <a href="https://docs.google.com/document/d/1ie0it6G_V_PrpO1fYe-731Fvubuahn2yi0ixBIpaYO8/edit?tab=t.0#heading=h.ivnn60c8oa1h">changes to the data products</a>. For instance, there are known mismatches in size and age compositions between the (soon to be) archived data and the gap_products data. Historically, there were some hauls in the AI/GOA where a catch weight was recorded for a species without an associated count. The old biomass scripts for the AI-GOA would assume these NA catch values to be zero, which negatively biased abundance estimates calculated from these hauls. The updated database is therefore expected to have slightly higher abundance estimates for years in which these hauls occurred, with subsequent changes to the age and length composition data. Optimally all data pulls will be transitioned to the new GAP defined database(s), do be in line with contemporary standards from hereon.</p>
+<p>One substantial change to the GAP-managed databases is a re-stratification of the GOA. Due to the area-specific design-based model expansions the biomass and numbers of POP vary by area, and the total abundance estimate changes (<a href="#fig-srvbio">Figure&nbsp;3</a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-srvbio" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/restrat.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Comparison of groundfish trawl survey biomass estimates for GOA Pacific ocean perch based upon the original design-based estimates and the restratified design-based estimates</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The overall negative log likelihood increases, which is predominately driven by an increase in the recruitment component (<a href="#tbl-likeslx">Table&nbsp;4</a>). There are substantial increases in biomass and an increase in <em>q</em> (<a href="#tbl-parslx">Table&nbsp;5</a>) when the re-stratified survey estimate is included in the assessment.</p>
+</section>
+<section id="impacts-of-gap-re-stratification-on-pop-apportionment" class="level4" data-number="2.4.2">
+<h4 data-number="2.4.2" class="anchored" data-anchor-id="impacts-of-gap-re-stratification-on-pop-apportionment"><span class="header-section-number">2.4.2</span> Impacts of GAP re-stratification on POP apportionment</h4>
+<p>Area apportionment is completed by applying the <a href="https://github.com/afsc-assessments/rema"><code>REMA</code></a> model to estimate random effects parameters that control the variation of estimated biomass across years and areas, and is fit to the trawl survey biomass estimates (with associated variance) for the Western, Central, and Eastern GOA. Changes to the survey biomass stratification will affect this apportionment strategy.</p>
+<p>Re-stratification increases the biomass estimates for all regions in most years (<a href="#fig-restratbio">Figure&nbsp;4</a>). However, the proportions by area do not substantially change (<a href="#fig-propbio">Figure&nbsp;5</a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-restratbio" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/restrat_bio.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Biomass estimates by GOA area from the original design-based estimates and re-stratified estimates.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-propbio" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/prop_bio.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: The proportion of biomass by GOA area from the original design-based estimates and re-stratified estimates.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As such, the area apportionments do not change substantially (<a href="#fig-app">Figure&nbsp;6</a> and <a href="#tbl-app">Table&nbsp;3</a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-app" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/app.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Annual apportionment based upon the original design-based estimates and re-stratified estimates as run through the REMA model.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-app" class="anchored">
+
+<div class="tabwid"><style>.cl-c5d7ad10{}.cl-c5c837ae{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c5c837c2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c5cdeb9a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c5cdebae{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c5ce0dd2{width:1.058in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0ddc{width:0.625in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0ddd{width:1.278in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0de6{width:1.202in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0de7{width:1.236in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0df0{width:0.752in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0df1{width:1.058in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0df2{width:0.625in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0dfa{width:1.278in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0dfb{width:1.202in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e04{width:1.236in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e05{width:0.752in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e06{width:1.058in;background-color:rgba(229, 229, 229, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e0e{width:0.625in;background-color:rgba(229, 229, 229, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e0f{width:1.278in;background-color:rgba(229, 229, 229, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e18{width:1.202in;background-color:rgba(229, 229, 229, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e19{width:1.236in;background-color:rgba(229, 229, 229, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e1a{width:0.752in;background-color:rgba(229, 229, 229, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e22{width:1.058in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e23{width:0.625in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e24{width:1.278in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e25{width:1.202in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e2c{width:1.236in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5ce0e2d{width:0.752in;background-color:rgba(255, 255, 255, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c5d7ad10"><caption>Table&nbsp;3:  <p>Annual regional apportionment with original survey stratification and
+restratified values. Note, this comparison is from the most recent REMA
+run e.g., without ‘retrospective’ peels.</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-c5ce0dd2"><p class="cl-c5cdeb9a"><span class="cl-c5c837ae">Model</span></p></th><th class="cl-c5ce0ddc"><p class="cl-c5cdebae"><span class="cl-c5c837ae">Year</span></p></th><th class="cl-c5ce0ddd"><p class="cl-c5cdebae"><span class="cl-c5c837ae">Western GOA</span></p></th><th class="cl-c5ce0de6"><p class="cl-c5cdebae"><span class="cl-c5c837ae">Central GOA</span></p></th><th class="cl-c5ce0de7"><p class="cl-c5cdebae"><span class="cl-c5c837ae">Eastern GOA</span></p></th><th class="cl-c5ce0df0"><p class="cl-c5cdebae"><span class="cl-c5c837ae">ABC</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0df1"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0df2"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2014</span></p></td><td class="cl-c5ce0dfa"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,272</span></p></td><td class="cl-c5ce0dfb"><p class="cl-c5cdebae"><span class="cl-c5c837c2">13,966</span></p></td><td class="cl-c5ce0e04"><p class="cl-c5cdebae"><span class="cl-c5c837c2">3,071</span></p></td><td rowspan="2" class="cl-c5ce0e05"><p class="cl-c5cdebae"><span class="cl-c5c837c2">19,309</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,129</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">13,520</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">3,660</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2015</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,238</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">15,201</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">3,573</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">21,012</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,314</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">14,380</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">4,318</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2016</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,838</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">17,199</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">4,400</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">24,437</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,456</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">17,063</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">4,918</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2017</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">3,023</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">16,343</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">4,551</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">23,918</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,191</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">17,018</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">4,709</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2018</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,333</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">21,464</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">5,438</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">29,236</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">1,927</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">21,675</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">5,634</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2019</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">1,409</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">22,061</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">5,085</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">28,555</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">1,343</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">21,872</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">5,340</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2020</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,031</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">24,528</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">4,679</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">31,238</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">1,613</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">24,475</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">5,150</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2021</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">3,070</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">28,593</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">4,514</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">36,177</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,043</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">28,893</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">5,241</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2022</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2,557</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">28,957</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">6,754</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">38,268</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">1,944</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">29,279</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">7,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e22"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Restratified</span></p></td><td rowspan="2" class="cl-c5ce0e23"><p class="cl-c5cdebae"><span class="cl-c5c837c2">2023</span></p></td><td class="cl-c5ce0e24"><p class="cl-c5cdebae"><span class="cl-c5c837c2">1,905</span></p></td><td class="cl-c5ce0e25"><p class="cl-c5cdebae"><span class="cl-c5c837c2">26,242</span></p></td><td class="cl-c5ce0e2c"><p class="cl-c5cdebae"><span class="cl-c5c837c2">9,045</span></p></td><td rowspan="2" class="cl-c5ce0e2d"><p class="cl-c5cdebae"><span class="cl-c5c837c2">37,193</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5ce0e06"><p class="cl-c5cdeb9a"><span class="cl-c5c837c2">Original</span></p></td><td class="cl-c5ce0e0f"><p class="cl-c5cdebae"><span class="cl-c5c837c2">1,679</span></p></td><td class="cl-c5ce0e18"><p class="cl-c5cdebae"><span class="cl-c5c837c2">26,922</span></p></td><td class="cl-c5ce0e19"><p class="cl-c5cdebae"><span class="cl-c5c837c2">8,592</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="management-comparison-tables" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="management-comparison-tables"><span class="header-section-number">2.5</span> Management comparison tables</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-m252" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/m25.2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Difference between the second fishery selectivity time block being scaled to one vs unscaled.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-likeslx" class="anchored">
+
+<div class="tabwid"><style>.cl-c5fb3e4c{}.cl-c5f322ac{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c5f5b9ae{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c5f5b9af{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c5f5ce4e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5f5ce4f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5f5ce58{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5f5ce59{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5f5ce5a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c5f5ce62{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c5fb3e4c"><caption>Table&nbsp;4:  <p>Model negative log-likelihood values for comparing multiple GOA
+Pacific ocean perch assessments with data or model changes. Model
+changes are incremental: m25 is the base model, m25a updates the GAP
+survey stratification, m25.1 changes the survey likelihood, m25.2 scales
+all fishery selectivity time blocks to 1.</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-c5f5ce4e"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Likelihood</span></p></th><th class="cl-c5f5ce4f"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">m25</span></p></th><th class="cl-c5f5ce4f"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">m25a</span></p></th><th class="cl-c5f5ce4f"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">m25b</span></p></th><th class="cl-c5f5ce4f"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">25c</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Catch</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.2181</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.2193</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.2193</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.2061</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Survey</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">16.4416</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">6.6600</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">6.6589</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">7.8463</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Fish age</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">25.0028</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">25.0171</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">25.0184</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">24.8730</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Survey age</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">29.2822</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">29.2942</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">29.2923</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">28.7113</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Fish size</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">66.2259</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">66.2291</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">66.2235</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">66.1899</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Recruitment</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">10.6027</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">10.7539</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">10.7586</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">14.0838</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">F regularity</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">6.1405</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">6.1383</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">6.1403</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">6.1808</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">SPR penalty</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.0000</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.0000</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.0000</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.0000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">M prior</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.4241</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.4270</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">0.4273</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">1.1263</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">q prior</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">1.8299</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">1.8128</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">1.8124</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">1.4400</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce58"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Sigma R prior</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">7.9849</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">7.9551</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">7.9542</span></p></td><td class="cl-c5f5ce59"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">7.3143</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c5f5ce5a"><p class="cl-c5f5b9ae"><span class="cl-c5f322ac">Sub total</span></p></td><td class="cl-c5f5ce62"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">164.1527</span></p></td><td class="cl-c5f5ce62"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">154.5068</span></p></td><td class="cl-c5f5ce62"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">154.5053</span></p></td><td class="cl-c5f5ce62"><p class="cl-c5f5b9af"><span class="cl-c5f322ac">157.9717</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-parslx" class="anchored">
+
+<div class="tabwid"><style>.cl-c6418104{}.cl-c62f71c6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c63551e0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c63551f4{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c635864c{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c6358660{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c6358661{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c635866a{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c6358674{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c635867e{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c635867f{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c6358688{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c6358692{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c6358693{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c635869c{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c63586a6{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c63586a7{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c63586b0{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c63586ba{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c63586c4{width:1.39in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c6418104"><caption>Table&nbsp;5:  <p>Key parameters and output values for comparing multiple GOA Pacific
+ocean perch assessments with data or model changes. Model changes are
+incremental: m25 is the base model, m25a updates the GAP survey
+stratification, m25.1 changes the survey likelihood, m25.2 scales all
+fishery selectivity time blocks to 1.</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-c635864c"><p class="cl-c63551e0"><span class="cl-c62f71c6">Item</span></p></th><th class="cl-c6358660"><p class="cl-c63551f4"><span class="cl-c62f71c6">m25</span></p></th><th class="cl-c6358660"><p class="cl-c63551f4"><span class="cl-c62f71c6">m25.1</span></p></th><th class="cl-c6358660"><p class="cl-c63551f4"><span class="cl-c62f71c6">m25.2</span></p></th><th class="cl-c6358660"><p class="cl-c63551f4"><span class="cl-c62f71c6">m25.2a</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">M</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0743</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0743</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0743</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0728</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">a50-1</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">6.2965</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">6.2969</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">6.2963</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">6.3090</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">a50-2</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.5239</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.5240</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.5242</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.5385</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">a50-3</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.7987</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.7998</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.7998</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.8022</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">delta-1</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">1.9582</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">1.9587</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">1.9576</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">1.9737</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">delta-2</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.0275</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.0286</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.0298</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.1256</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">delta-3</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">9.6824</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">9.6917</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">9.6923</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">9.8612</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358674"><p class="cl-c63551e0"><span class="cl-c62f71c6">a50 survey</span></p></td><td class="cl-c635867e"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.4801</span></p></td><td class="cl-c635867e"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.4923</span></p></td><td class="cl-c635867e"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.4926</span></p></td><td class="cl-c635867e"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.6511</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c635867f"><p class="cl-c63551e0"><span class="cl-c62f71c6">delta survey</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.8192</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.8285</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.8288</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">5.9528</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358661"><p class="cl-c63551e0"><span class="cl-c62f71c6">q</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">1.7361</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">1.7385</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">1.7388</span></p></td><td class="cl-c635866a"><p class="cl-c63551f4"><span class="cl-c62f71c6">2.2501</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c635867f"><p class="cl-c63551e0"><span class="cl-c62f71c6">Log mean recruitment</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">4.4492</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">4.4480</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">4.4479</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">4.4091</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c635867f"><p class="cl-c63551e0"><span class="cl-c62f71c6">Log mean F</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">-2.6131</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">-2.6119</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">-2.6126</span></p></td><td class="cl-c6358688"><p class="cl-c63551f4"><span class="cl-c62f71c6">-2.5873</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358692"><p class="cl-c63551e0"><span class="cl-c62f71c6">2024 Total biomass</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">649,941.11</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">652,769.68</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">652,699.68</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">676,213.18</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c635869c"><p class="cl-c63551e0"><span class="cl-c62f71c6">2024 Spawning biomass</span></p></td><td class="cl-c63586a6"><p class="cl-c63551f4"><span class="cl-c62f71c6">227,991.19</span></p></td><td class="cl-c63586a6"><p class="cl-c63551f4"><span class="cl-c62f71c6">229,008.22</span></p></td><td class="cl-c63586a6"><p class="cl-c63551f4"><span class="cl-c62f71c6">228,982.32</span></p></td><td class="cl-c63586a6"><p class="cl-c63551f4"><span class="cl-c62f71c6">240,873.48</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358692"><p class="cl-c63551e0"><span class="cl-c62f71c6">2024 OFL</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">47,466.28</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">47,690.25</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">47,684.76</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">49,064.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c63586a7"><p class="cl-c63551e0"><span class="cl-c62f71c6">2024 F OFL</span></p></td><td class="cl-c63586b0"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.1192</span></p></td><td class="cl-c63586b0"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.1192</span></p></td><td class="cl-c63586b0"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.1192</span></p></td><td class="cl-c63586b0"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.1162</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c6358692"><p class="cl-c63551e0"><span class="cl-c62f71c6">2024 ABC</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">39,718.89</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">39,902.03</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">39,897.34</span></p></td><td class="cl-c6358693"><p class="cl-c63551f4"><span class="cl-c62f71c6">41,063.55</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c63586ba"><p class="cl-c63551e0"><span class="cl-c62f71c6">2024 F ABC</span></p></td><td class="cl-c63586c4"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0990</span></p></td><td class="cl-c63586c4"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0990</span></p></td><td class="cl-c63586c4"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0990</span></p></td><td class="cl-c63586c4"><p class="cl-c63551f4"><span class="cl-c62f71c6">0.0965</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<p>## Research Models</p>
+</section>
+<section id="have-data-conflicts" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="have-data-conflicts"><span class="header-section-number">2.6</span> Have data conflicts…</h3>
+<p><em>Conflict with Age Data:</em></p>
+<ul>
+<li>The most dramatic shifts occur in parameters related to selectivity and growth.</li>
+</ul>
+<p><em>Impact on Mortality and Biomass:</em></p>
+<ul>
+<li>Changes in selectivity have a domino effect.</li>
+<li>Estimate for natural mortality (M) drop significantly, and as a result, the total and spawning biomass estimates roughly double.</li>
+</ul>
+<p><em>Influence on Management Advice:</em></p>
+<ul>
+<li>Ultimately, this data conflict leads to a vastly different perception of the stock’s productivity and status, as reflected in the OFL and ABC calculations</li>
+</ul>
+</section>
+</section>
+<section id="examinations" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="examinations"><span class="header-section-number">3</span> Examinations</h2>
+<section id="survey-selectivity" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="survey-selectivity"><span class="header-section-number">3.1</span> Survey Selectivity</h3>
+<p>Random walk penalty on survey selectivity parameter <span class="math inline">\(\log(a_{50, S, t})\)</span> over time, penalized as:</p>
+<p><span class="math display">\[
+\text{nll}_{slx\_srv} = \sum_{t=2}^{T_S} \frac{\left( \log a_{50, S, t} - \log a_{50, S, t-1} \right)^2}{2\sigma_{\text{slx}, S}^2}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(a_{50, S, t}\)</span> is the age at 50% selectivity for the survey in year <span class="math inline">\(t\)</span>,</li>
+<li><span class="math inline">\(\sigma_{\text{slx}, S}\)</span> is the standard deviation controlling the smoothness of the random walk.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-srvslx" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/srv_slx.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;8: Annual survey selectivity with time varying A50.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fishery-selectivity" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="fishery-selectivity"><span class="header-section-number">3.2</span> Fishery selectivity</h3>
+<ul>
+<li>Double normal time blocks (last 2) - no improvement</li>
+<li>Logistic time blocks (last 2) - similar overall likelihood, slight reduction in biomass</li>
+<li>Random walk on a50 - slightly increased overall likelihood - increases biomass, q = 2.57</li>
+<li>Random walk on a50 w/time-varying <em>q</em> lower overall likelihood - mostly due to recruitment, major recruit shift (doubles+) and associated almost double biomass - very high M (0.14) - <em>held sigma_q and sigma_rw fixed</em></li>
+</ul>
+</section>
+<section id="cohort-smoothing" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="cohort-smoothing"><span class="header-section-number">3.3</span> Cohort smoothing</h3>
+<ul>
+<li>worse overall likelihood, slight increase in biomass</li>
+</ul>
+</section>
+<section id="m-prior" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="m-prior"><span class="header-section-number">3.4</span> M prior</h3>
+<p>Free up cv <em>M</em> from 0.1 to 0.31</p>
+<ul>
+<li>best overall likelihood, <em>M</em> increases to 0.986, biomass increases</li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
