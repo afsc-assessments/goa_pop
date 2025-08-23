@@ -668,8 +668,8 @@ srv_like <- function(pars, data) {
 
 # RTMB model with:
 # survey likelihood bias correction
-# selectivity scaled to 1
-# no input parameter or data changes
+# 2nd slx time block set to dome
+# two additional slx input parameters, no data changes
 slx_scale <- function(pars, data) {
   require(RTMB)
   "c" <- RTMB::ADoverload("c")
@@ -724,9 +724,9 @@ slx_scale <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,3] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
-  slx_block[,2] = to_one((slx_block[,1] + slx_block[,3]) * 0.5)          # Block 2: average of blocks 1 and 3
-  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  slx_block[,2] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 2: double logistic selectivity
+  slx_block[,3] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 3: double logistic selectivity
+  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[4], deltaC[4], adj=0)) # Block 4: double logistic selectivity
   
   
   for(t in 1:T) {
