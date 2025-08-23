@@ -57,9 +57,9 @@ base <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,3] = sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0) # Block 3: double logistic selectivity
+  slx_block[,3] = sel_gamma(1:A, a50C[2], deltaC[2], adj=0) # Block 3: double logistic selectivity
   slx_block[,2] = (slx_block[,1] + slx_block[,3]) * 0.5          # Block 2: average of blocks 1 and 3
-  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
   slx_block[,3] = to_one(slx_block[,3])                          # Normalize block 3 selectivity - must be done after block 2 to match ADMB
   
   for(t in 1:T) {
@@ -389,9 +389,9 @@ srv_like <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,3] = sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0) # Block 3: double logistic selectivity
+  slx_block[,3] = sel_gamma(1:A, a50C[2], deltaC[2], adj=0) # Block 3: double logistic selectivity
   slx_block[,2] = (slx_block[,1] + slx_block[,3]) * 0.5          # Block 2: average of blocks 1 and 3
-  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
   slx_block[,3] = to_one(slx_block[,3])                          # Normalize block 3 selectivity - must be done after block 2 to match ADMB
   
   for(t in 1:T) {
@@ -724,9 +724,9 @@ slx_scale <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,2] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 2: double logistic selectivity
-  slx_block[,3] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 3: double logistic selectivity
-  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[4], deltaC[4], adj=0)) # Block 4: double logistic selectivity
+  slx_block[,2] = to_one(sel_gamma(1:A, a50C[2], deltaC[2], adj=0)) # Block 2: double logistic selectivity
+  slx_block[,3] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 3: double logistic selectivity
+  slx_block[,4] = to_one(sel_gamma(1:A, a50C[4], deltaC[4], adj=0)) # Block 4: double logistic selectivity
   
   
   for(t in 1:T) {
@@ -1061,9 +1061,9 @@ tv_wt <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,3] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
+  slx_block[,3] = to_one(sel_gamma(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
   slx_block[,2] = to_one((slx_block[,1] + slx_block[,3]) * 0.5)          # Block 2: average of blocks 1 and 3
-  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
   
   
   for(t in 1:T) {
@@ -2058,9 +2058,9 @@ slx_scale_log <- function(pars, data) {
 #   # selectivity ----
 #   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
 #   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-#   slx_block[,3] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
+#   slx_block[,3] = to_one(sel_gamma(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
 #   slx_block[,2] = to_one((slx_block[,1] + slx_block[,3]) * 0.5)          # Block 2: average of blocks 1 and 3
-#   slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+#   slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
 #   
 #   
 #   for(t in 1:T) {
@@ -2397,9 +2397,9 @@ slx_fish_rw <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,2] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
+  slx_block[,2] = to_one(sel_gamma(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
   # slx_block[,2] = to_one((slx_block[,1] + slx_block[,3]) * 0.5)          # Block 2: average of blocks 1 and 3
-  # slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  # slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
   
   nll_rw_a50C = 0
   for (t in 2:length(log_a50C_rw)) {
@@ -2410,7 +2410,7 @@ slx_fish_rw <- function(pars, data) {
   for(t in 1:T) {
     if (fish_block_ind[t] == 3) {
       a50 = exp(log_a50C_rw[rw_index])
-      slx_fish[,t] = to_one(sel_double_logistic(1:A, a50, deltaC[3], adj=0))
+      slx_fish[,t] = to_one(sel_gamma(1:A, a50, deltaC[3], adj=0))
       rw_index = rw_index + 1
     } else {
       slx_fish[,t] = slx_block[,fish_block_ind[t]]
@@ -2752,9 +2752,9 @@ slx_fish_rw_tvq <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,2] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
+  slx_block[,2] = to_one(sel_gamma(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
   # slx_block[,2] = to_one((slx_block[,1] + slx_block[,3]) * 0.5)          # Block 2: average of blocks 1 and 3
-  # slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  # slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
   
   nll_rw_a50C = 0
   for (t in 2:length(log_a50C_rw)) {
@@ -2766,7 +2766,7 @@ slx_fish_rw_tvq <- function(pars, data) {
     if (fish_block_ind[t] == 3) {
       a50 = exp(log_a50C_rw[rw_index])
       # delta = deltaC_rw[rw_index]  
-      slx_fish[,t] = to_one(sel_double_logistic(1:A, a50, deltaC[3], adj=0))
+      slx_fish[,t] = to_one(sel_gamma(1:A, a50, deltaC[3], adj=0))
       rw_index = rw_index + 1
     } else {
       slx_fish[,t] = slx_block[,fish_block_ind[t]]
@@ -3105,9 +3105,9 @@ slx_srv <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,3] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
+  slx_block[,3] = to_one(sel_gamma(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
   slx_block[,2] = to_one((slx_block[,1] + slx_block[,3]) * 0.5)          # Block 2: average of blocks 1 and 3
-  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
   
   
   for(t in 1:T) {
@@ -3450,9 +3450,9 @@ cohort <- function(pars, data) {
   # selectivity ----
   slx_block = matrix(0, A, 4)                                    # Selectivity blocks for fishery
   slx_block[,1] = sel_logistic(1:A, a50C[1], deltaC[1], adj=0)   # Block 1: logistic selectivity
-  slx_block[,3] = to_one(sel_double_logistic(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
+  slx_block[,3] = to_one(sel_gamma(1:A, a50C[2], deltaC[2], adj=0)) # Block 3: double logistic selectivity
   slx_block[,2] = to_one((slx_block[,1] + slx_block[,3]) * 0.5)          # Block 2: average of blocks 1 and 3
-  slx_block[,4] = to_one(sel_double_logistic(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
+  slx_block[,4] = to_one(sel_gamma(1:A, a50C[3], deltaC[3], adj=0)) # Block 4: double logistic selectivity
   
   
   for(t in 1:T) {
