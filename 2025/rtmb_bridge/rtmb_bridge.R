@@ -16,16 +16,19 @@ ages = 2:25
 years = 1961:2023
 length_bins = 16:45
 
-source(here::here(year, 'r', "utils.R"))
+# source(here::here(year, 'r', "utils.R"))
 source(here::here(year, 'r', "models.R"))
 
 # bridge data and results from 2023 ADMB model
 REP = readLines(here::here(year, "base", "model_20_1.rep"))
 PAR = readLines(here::here(year, "base", "model_20_1.par"))
+STD = read_table(here::here(year, "base", "model_20_1.std"))
 DAT = readLines(here::here(year, "base", "goa_pop_2023.dat"))
 CTL = readLines(here::here(year, "base", "goa_pop_2023.ctl"))
 
 # data ----
+# build data inputs directly from the data used in the ADMB model
+
 # maa = as.numeric(stringr::str_split(REP[grep('Maturity', REP)], " ")[[1]][3:30])
 # waa = as.numeric(stringr::str_split(REP[grep('Weight', REP)], " ")[[1]][3:30])
 # wt_mature = waa * maa / 2
@@ -163,6 +166,8 @@ CTL = readLines(here::here(year, "base", "goa_pop_2023.ctl"))
 # saveRDS(data, here::here(year, 'rtmb_bridge', "data.rds"))
 # 
 # # parameters ----
+# build parameter inputs directly from the ADMB model 
+
 # A = nrow(ae)
 # pars = list(log_M = as.numeric(PAR[grep('logm', PAR)+1]),
 #             log_a50C = log(a50_vals),
@@ -188,21 +193,21 @@ data = readRDS(here::here(year, 'rtmb_bridge', "data.rds"))
 pars = readRDS(here::here(year, 'rtmb_bridge', "pars.rds"))
 
 # original ADMB starting pars
-pars = list(log_M = log(0.0614),
-            log_a50C = log(c(6, 2.5, 2.5)),
-            deltaC = c(1.5,4.5, 4.5),
-            log_a50S = log(7.3),
-            deltaS = 3.8,
-            log_q = log(1.15),
-            log_mean_R = 3.0,
-            init_log_Rt = rep(0, 26),
-            log_Rt = rep(0, sum(data$catch_ind)),
-            log_mean_F = 0,
-            log_Ft = rep(0, sum(data$catch_ind)),
-            log_F35 = 0,
-            log_F40 = 0,
-            log_F50 = 0,
-            sigmaR = 1.7)
+# pars = list(log_M = log(0.0614),
+#             log_a50C = log(c(6, 2.5, 2.5)),
+#             deltaC = c(1.5,4.5, 4.5),
+#             log_a50S = log(7.3),
+#             deltaS = 3.8,
+#             log_q = log(1.15),
+#             log_mean_R = 3.0,
+#             init_log_Rt = rep(0, 26),
+#             log_Rt = rep(0, sum(data$catch_ind)),
+#             log_mean_F = 0,
+#             log_Ft = rep(0, sum(data$catch_ind)),
+#             log_F35 = 0,
+#             log_F40 = 0,
+#             log_F50 = 0,
+#             sigmaR = 1.7)
 
 # limits ----
 # not currently used 
@@ -242,9 +247,14 @@ pars = list(log_M = log(0.0614),
 #   sigmaR = 1.5                  # Maximum recruitment SD
 # )
 
-# match the base model
+# model runs ----
+# match the base model w/o optimizing
 obj <- RTMB::MakeADFun(cmb(base, data),
                        pars)
+rpt <- obj$report(obj$env$last.par.best)
+proj_bio(rpt)
+
+# match the base model w/optimizing
 fit <- nlminb(start = obj$par,
               objective = obj$fn,
               gradient = obj$gr,
@@ -256,9 +266,41 @@ saveRDS(fit, here::here(2025, 'rtmb_bridge', 'results', 'fit.RDS'))
 saveRDS(rpt, here::here(2025, 'rtmb_bridge', 'results', 'report.RDS'))
 
 prj = proj_bio(rpt)[1,]
-sdreport(obj, getJointPrecision = TRUE)
+sd_fit = sdreport(obj, getJointPrecision = TRUE)
 
 # compare ----
+## SD
+as.data.frame(summary(sd_fit, "fixed")) %>% 
+  tibble::rownames_to_column("name") %>% 
+  dplyr::rename(value = Estimate, std.dev = `Std. Error`)-> sds
+
+filter(STD, name=='log_mean_rec') %>% 
+  bind_rows(filter(sds, name=="log_mean_R"))
+
+filter(STD, name=='sigr') %>% 
+  bind_rows(filter(sds, name=="sigmaR"))
+
+filter(STD, name=='nattymort') %>% 
+  bind_rows(filter(sds, name=="log_M")) %>% 
+  mutate(value = case_when(name=='log_M'~ exp(value), 
+                            TRUE ~ value),
+         std.dev = case_when(name=='log_M'~ value * std.dev, # delta method
+                           TRUE ~ std.dev))
+filter(STD, name=='q_srv1') %>% 
+  bind_rows(filter(sds, name=="log_q")) %>% 
+  mutate(value = case_when(name=='log_q'~ exp(value), 
+                           TRUE ~ value),
+         std.dev = case_when(name=='log_q'~ value * std.dev, # delta method
+                             TRUE ~ std.dev))
+
+filter(STD, name=='q_srv1') %>% 
+  bind_rows(filter(sds, name=="log_q")) %>% 
+  mutate(value = case_when(name=='log_q'~ exp(value), 
+                           TRUE ~ value),
+         std.dev = case_when(name=='log_q'~ value * std.dev, # delta method
+                             TRUE ~ std.dev))
+
+# get ADMB likelihood values
 ssqcatch = round(as.numeric(stringr::str_split(REP[grep("SSQ Catch Likelihood", REP)], " ")[[1]][2]), 4)
 srv_like = round(as.numeric(stringr::str_split(REP[grep("Bottom Trawl Survey Likelihood", REP)], " ")[[1]][2]), 4)
 fa_like = round(as.numeric(stringr::str_split(REP[grep("Fishery Age Composition Likelihood", REP)], " ")[[1]][2]), 4)
