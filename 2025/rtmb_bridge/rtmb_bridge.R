@@ -270,9 +270,77 @@ sd_fit = sdreport(obj, getJointPrecision = TRUE)
 
 # compare ----
 ## SD
-as.data.frame(summary(sd_fit, "fixed")) %>% 
+as.data.frame(summary(sd_fit)) %>% 
   tibble::rownames_to_column("name") %>% 
   dplyr::rename(value = Estimate, std.dev = `Std. Error`)-> sds
+
+bind_rows(filter(STD, name=='log_F_devs') %>% 
+            mutate(name = "log_Ft",
+                   year = rpt$years,
+                   ll = value - std.dev,
+                   ul = value + std.dev,
+                   id = 'ADMB')) %>% 
+  bind_rows(sds %>%
+              filter(stringr::str_detect(name, "Ft")) %>%
+              mutate(name = gsub("\\.\\d+", "", name),
+                     year = rpt$years,
+                     ll = value -std.dev,
+                     ul = value + std.dev,
+                     id = "RTMB")) %>% 
+  bind_rows(filter(STD, name=='pred_rec') %>% 
+  mutate(name = "recruits",
+         year = rpt$years,
+         ll = value - std.dev,
+         ul = value + std.dev,
+         id = 'ADMB')) %>% 
+  bind_rows(sds %>%
+              filter(stringr::str_detect(name, "recruits")) %>%
+              mutate(name = gsub("\\.\\d+", "", name),
+                     year = rpt$years,
+                     ll = value -std.dev,
+                     ul = value + std.dev,
+                     id = "RTMB")) %>% 
+bind_rows(filter(STD, name=='spawn_biom') %>% 
+  mutate(name = "spawn_bio",
+         year = rpt$years,
+         ll = value - std.dev,
+         ul = value + std.dev,
+         id = 'ADMB')) %>% 
+  bind_rows(sds %>%
+              filter(stringr::str_detect(name, "spawn_bio")) %>%
+              mutate(name = gsub("\\.\\d+", "", name),
+                     year = rpt$years,
+                     ll = value -std.dev,
+                     ul = value + std.dev,
+                     id = "RTMB")) %>% 
+  bind_rows(filter(STD, name=='tot_biom') %>% 
+  mutate(name = "tot_bio",
+         year = rpt$years,
+         ll = value - std.dev,
+         ul = value + std.dev,
+         id = 'ADMB')) %>% 
+  bind_rows(sds %>%
+              filter(stringr::str_detect(name, "tot_bio")) %>%
+              mutate(name = gsub("\\.\\d+", "", name),
+                     year = rpt$years,
+                     ll = value -std.dev,
+                     ul = value + std.dev,
+                     id = "RTMB")) %>% 
+  select(name, value, year, ll, ul, Model = id) %>% 
+  mutate(name = case_when(name=='spawn_bio' ~ "Spawning Biomass",
+                          name=='tot_bio' ~ "Total Biomass",
+                          name=='log_Ft' ~ "Log Fishing Mortality Devs",
+                          name=='recruits' ~ "Recruitment")) %>% 
+  ggplot(aes(year, value, color = Model, fill = Model, linetype = Model)) + 
+  geom_ribbon(aes(ymin=ll, ymax=ul), alpha = 0.2, color = NA) +
+  geom_line() +
+  facet_wrap(~name, scales = "free") +
+  scico::scale_color_scico_d(end = 0.7) +
+  scico::scale_fill_scico_d(end = 0.7) +
+  xlab("Year") +
+  ylab("")
+ggsave(here::here(2025, "sep_pt", "figs", "biomass.png"))
+
 
 filter(STD, name=='log_mean_rec') %>% 
   bind_rows(filter(sds, name=="log_mean_R"))
@@ -292,7 +360,6 @@ filter(STD, name=='q_srv1') %>%
                            TRUE ~ value),
          std.dev = case_when(name=='log_q'~ value * std.dev, # delta method
                              TRUE ~ std.dev))
-
 filter(STD, name=='q_srv1') %>% 
   bind_rows(filter(sds, name=="log_q")) %>% 
   mutate(value = case_when(name=='log_q'~ exp(value), 
@@ -334,6 +401,7 @@ sp = as.numeric(REP[grep("Female_Spawning Biomass for 2024", REP)+1])
 ofl = as.numeric(REP[grep("\\bOFL for 2024", REP)+1])
 fofl = as.numeric(REP[grep("F_OFL for 2024", REP)+1])
 abc = as.numeric(REP[grep("\\bABC for 2024", REP)+1])
+b40 = as.numeric(REP[grep("B_40", REP)+1])
 fabc = as.numeric(REP[grep("F_ABC for 2024", REP)+1])
 prj = proj_bio(rpt)[1,]
 
@@ -341,83 +409,50 @@ prj = proj_bio(rpt)[1,]
 pars = readRDS(here::here(year, 'rtmb_bridge', "pars.rds"))
 
 data.frame(Item = c("M", "q", "Log mean recruitment", "Log mean F", 'a50_1', 'delta_1', 'a50_3', 'delta_3', 'a50_4', 'delta_4', 'a50_survey', 'delta_survey',
-                    "2024 Total biomass", "2024 Spawning biomass", "2024 OFL", "2024 F OFL", " 2024 ABC", "2024 F ABC"),
+                    "2024 Total biomass", "2024 Spawning biomass", "B40", "2024 OFL", "2024 F OFL", " 2024 ABC", "2024 F ABC"),
            ADMB = round(c(exp(pars$log_M), exp(pars$log_q), pars$log_mean_R, pars$log_mean_F, exp(pars$log_a50C)[1], 
                           pars$deltaC[1], exp(pars$log_a50C)[2], pars$deltaC[2], exp(pars$log_a50C)[3], pars$deltaC[3], 
-                          exp(pars$log_a50S), pars$deltaS, tot, sp, ofl, fofl, abc, fabc), 4),
+                          exp(pars$log_a50S), pars$deltaS, tot, sp, b40, ofl, fofl, abc, fabc), 4),
            RTMB = round(c(rpt$M, rpt$q, rpt$log_mean_R, rpt$log_mean_F, rpt$a50C[1], rpt$deltaC[1], 
                           rpt$a50C[2], rpt$deltaC[2], rpt$a50C[3], rpt$deltaC[3], rpt$a50S, rpt$deltaS,
-                          prj$tot_bio, prj$spawn_bio, prj$catch_ofl, prj$F35, prj$catch_abc, prj$F40),4)) %>% 
+                          prj$tot_bio, prj$spawn_bio, rpt$B40, prj$catch_ofl, prj$F35, prj$catch_abc, prj$F40),4)) %>% 
   mutate(Difference = ADMB - RTMB) %>% 
-  flextable::flextable() %>% 
-  flextable::colformat_double(
-    i = c(13:15,17),  j = 2:4,
-    big.mark = ",", 
-    digits = 2, 
-    na_str = "N/A"
-  ) %>% 
+  # flextable::flextable() %>% 
+  # flextable::colformat_double(
+  #   i = c(13:15,17),  j = 2:4,
+  #   big.mark = ",", 
+  #   digits = 2, 
+  #   na_str = "N/A"
+  # ) %>% 
   vroom::vroom_write(here::here(2025, "sep_pt", "tables", "par_tbl.csv"), delim=",")
-
-
-data.frame(Item = c("M", "q", "Log mean recruitment", "Log mean F", "2024 Total biomass", "2024 Spawning biomass", "2024 OFL", "2024 F OFL", " 2024 ABC", "2024 F ABC"),
-           ADMB = round(c(exp(pars$log_M), exp(pars$log_q), pars$log_mean_R, pars$log_mean_F, tot, sp, ofl, fofl, abc, fabc), 4),
-           RTMB = round(c(rpt$M, rpt$q, rpt$log_mean_R, rpt$log_mean_F,
-                          prj$tot_bio, prj$spawn_bio, prj$catch_ofl, prj$F35, prj$catch_abc, prj$F40),4)) %>% 
-  mutate(Difference = ADMB - RTMB) 
 
 # data likelihood
 rpt$ssqcatch + rpt$like_srv + rpt$like_srv_age + rpt$like_fish_age + rpt$like_fish_size # data objective function
 
 
 # basic comparison plots ----
-
-data.frame(year = rpt$years, 
-           spawn_bio = as.numeric(stringr::str_split(REP[grep("SpBiom", REP)], " ")[[1]][-c(1:2)]),
-           tot_bio = as.numeric(stringr::str_split(REP[grep("Tot_biom", REP)], " ")[[1]][-c(1:2)]),
-           Ft = as.numeric(stringr::str_split(REP[grep("Fully_selected_F", REP)], " ")[[1]][-c(1:2)]),
-           recruits = as.numeric(stringr::str_split(REP[grep("Recruitment", REP)], " ")[[1]][-c(1:2)]),
-           id = "ADMB") %>% 
-tidyr::pivot_longer(-c(year, id)) %>% 
-  bind_rows(
-
-data.frame(year = rpt$years, 
-           spawn_bio = rpt$spawn_bio,
-           tot_bio = rpt$tot_bio,
-           Ft = rpt$Ft,
-           recruits = rpt$recruits,
-           id = "RTMB") %>% 
-  tidyr::pivot_longer(-c(year, id))) %>% 
-  mutate(name = case_when(name=='spawn_bio' ~ "Spawning Biomass",
-                          name=='tot_bio' ~ "Total Biomass",
-                          name=='Ft' ~ "Fishing mortality",
-                          name=='recruits' ~ "Recruitment")) %>% 
-  ggplot(aes(year, value, color = id)) + 
-  geom_line() + 
-  facet_wrap(~name, scales = "free_y")
-
-ggsave(here::here(2025, "sep_pt", "figs", "biomass.png"))
-
 # admb slx
 data.frame(age = 2:29,
-           slx1 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[1]]], " ")[[1]][-1]),
-           slx2 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[2]]], " ")[[1]][-1]),
-           slx3 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[3]]], " ")[[1]][-1]),
-           slx4 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[4]]], " ")[[1]][-1]),
+           X1 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[1]]], " ")[[1]][-1]),
+           X2 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[2]]], " ")[[1]][-1]),
+           X3 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[3]]], " ")[[1]][-1]),
+           X4 = as.numeric(stringr::str_split(REP[grep("Selectivity", REP)[[4]]], " ")[[1]][-1]),
            srv_slx = as.numeric(stringr::str_split(REP[grep("Bottom_Trawl_Survey_Selectivity", REP)], " ")[[1]][-c(1:2)]),
            id = "ADMB") %>% 
   bind_rows(
     data.frame(age = 2:29,
            rpt$slx_block,
            srv_slx = rpt$slx_srv,
-           id = "RTMB") %>% 
-  rename(slx1 = X1, slx2 = X2, slx3 = X3, slx4 = X4)
-  ) %>% 
-  tidyr::pivot_longer(-c(age, id)) %>% 
-  ggplot(aes(age, value, color = id)) + 
+           id = "RTMB")) %>% 
+  rename('Fishery 1' = X1, 'Fishery 2' = X2, 'Fishery 3' = X3, 'Fishery 4' = X4, "Survey" = srv_slx, Model = id) %>% 
+  tidyr::pivot_longer(-c(age, Model)) %>% 
+  ggplot(aes(age, value, color = Model, linetype = Model)) + 
   geom_line() + 
   facet_wrap(~name, scales = "free_y") +
   xlab("Age") +
-  ylab("Selectivity")
+  ylab("Selectivity") +
+  scico::scale_colour_scico_d(end=0.7) +
+  theme(legend.position = c(0.8, 0.25))
 
 ggsave(here::here(2025, "sep_pt", "figs", "slx.png"))
 
